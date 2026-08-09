@@ -85,6 +85,7 @@
     background:rgba(244,241,230,0.86);
     backdrop-filter:blur(6px);
     border-bottom:1px solid var(--line);
+    gap: 16px;
   }
   .logo{
     font-family:'Space Grotesk', sans-serif;
@@ -94,6 +95,7 @@
     text-decoration:none;
   }
   .logo span{color:var(--stamp);}
+  .nav-right{display:flex; align-items:center; gap:clamp(12px,2.5vw,28px);}
   nav.routes{display:flex; gap:clamp(12px,2.5vw,28px); font-size:13px;}
   nav.routes a{
     text-decoration:none;
@@ -105,6 +107,28 @@
   nav.routes a:hover{color:var(--ink);}
   nav.routes a::before{content:"/";color:var(--line-strong); margin-right:2px;}
   @media (max-width:600px){ nav.routes{display:none;} }
+
+  .view-counter{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.02em;
+    color:var(--ink-soft);
+    background:var(--paper-dim);
+    border:1px solid var(--line-strong);
+    border-radius:12px;
+    padding:5px 10px;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    white-space:nowrap;
+  }
+  .view-counter .dot{
+    width:6px;height:6px;
+    border-radius:50%;
+    background:var(--teal);
+    flex:none;
+  }
+  .view-counter .num{color:var(--ink); font-weight:600;}
 
   main{max-width:var(--max); margin:0 auto; padding:0 clamp(20px,5vw,48px);}
 
@@ -383,13 +407,20 @@
 
 <header class="nav">
   <a class="logo" href="#top">><span><u>FlaredRoverCodes</u>_</span></a>
-  <nav class="routes">
-    <a href="#about">about</a>
-    <a href="#work">work</a>
-    <a href="#experience">experience</a>
-    <a href="#skills">skills</a>
-    <a href="#contact">contact</a>
-  </nav>
+  <div class="nav-right">
+    <nav class="routes">
+      <a href="#about">about</a>
+      <a href="#work">work</a>
+      <a href="#experience">experience</a>
+      <a href="#skills">skills</a>
+      <a href="#contact">contact</a>
+    </nav>
+    <div class="view-counter mono" id="viewCounter" title="Total page views (via GoatCounter, excludes owner)" aria-live="polite">
+      <span class="dot"></span>
+      <span class="num" id="viewCount">—</span>
+      <span>views</span>
+    </div>
+  </div>
 </header>
 
 <main>
@@ -418,7 +449,7 @@
         <div class="meta-row"><span class="k">status</span><span class="v">2nd year, BSCpE</span></div>
         <div class="meta-row"><span class="k">focus</span><span class="v">low-level systems</span></div>
         <div class="meta-row"><span class="k">learning</span><span class="v">Rust</span></div>
-        <div class="meta-row"><span class="k">languages</span><span class="v">C / C++ / Java / Python / x86 ASM<Canvas></Canvas></span></div>
+        <div class="meta-row"><span class="k">languages</span><span class="v">C / C++ / Java / Python / x86 ASM</span></div>
       </div>
     </div>
   </section>
@@ -473,53 +504,6 @@
           <a href="#" target="_blank" rel="noopener">return 0;</a>
           <a href="#" target="_blank" rel="noopener">Source</a>
         </div>
-
-        <!-- <p class="path">/projects/ledgerline</p>
-        <h3>Ledgerline</h3>
-        <p>An event-sourced ledger service handling ~40M transactions a day for a fintech platform, rebuilt to cut reconciliation errors to near zero.</p>
-        <div class="tags">
-          <span class="tag">Go</span><span class="tag">Kafka</span><span class="tag">Postgres</span>
-        </div>
-        <div class="project-links">
-          <a href="#" target="_blank" rel="noopener">Case study</a>
-          <a href="#" target="_blank" rel="noopener">Source</a>
-        </div>
-      </article>
-      <article class="project">
-        <p class="path">/projects/wayfare</p>
-        <h3>Wayfare</h3>
-        <p>Open-source job scheduler with dependency graphs and retry policies, built as a lighter alternative to Airflow for small teams.</p>
-        <div class="tags">
-          <span class="tag">Rust</span><span class="tag">gRPC</span><span class="tag">SQLite</span>
-        </div>
-        <div class="project-links">
-          <a href="#" target="_blank" rel="noopener">Docs</a>
-          <a href="#" target="_blank" rel="noopener">Source</a>
-        </div>
-      </article>
-      <article class="project">
-        <p class="path">/projects/coldstart</p>
-        <h3>Coldstart</h3>
-        <p>A caching layer for serverless functions that trims median cold-start latency by keeping a warm pool sized from real traffic patterns.</p>
-        <div class="tags">
-          <span class="tag">TypeScript</span><span class="tag">Redis</span><span class="tag">AWS Lambda</span>
-        </div>
-        <div class="project-links">
-          <a href="#" target="_blank" rel="noopener">Write-up</a>
-          <a href="#" target="_blank" rel="noopener">Source</a>
-        </div>
-      </article>
-      <article class="project">
-        <p class="path">/projects/homelab</p>
-        <h3>Homelab notes</h3>
-        <p>A running, public log of self-hosting everything from DNS to backups on a rack of secondhand servers — mistakes included.</p>
-        <div class="tags">
-          <span class="tag">Nix</span><span class="tag">Kubernetes</span><span class="tag">Terraform</span>
-        </div>
-        <div class="project-links">
-          <a href="#" target="_blank" rel="noopener">Read notes</a>
-          <a href="#" target="_blank" rel="noopener">Source</a>
-        </div> -->
       </article>
     </div>
   </section>
@@ -532,26 +516,6 @@
         <h3>Computer Engineering <span class="company">@ PSU</span></h3>
         <p>Programming the way to success.</p>
       </div>
-      <!-- <div class="commit">
-        <div class="commit-head"><span class="hash">a3f9e21</span><span>2023 — present</span></div>
-        <h3>Staff Engineer <span class="company">@ Northline</span></h3>
-        <p>Lead the platform team responsible for the event bus and internal API gateway used by every product team. Cut incident response time in half by rebuilding on-call tooling.</p>
-      </div>
-      <div class="commit">
-        <div class="commit-head"><span class="hash">7c1b6d4</span><span>2020 — 2023</span></div>
-        <h3>Senior Backend Engineer <span class="company">@ Fernway</span></h3>
-        <p>Owned the payments infrastructure through a Series C and a 6x growth in transaction volume. Introduced event sourcing to fix long-standing reconciliation bugs.</p>
-      </div>
-      <div class="commit">
-        <div class="commit-head"><span class="hash">e08a45f</span><span>2018 — 2020</span></div>
-        <h3>Backend Engineer <span class="company">@ Ridgeline Labs</span></h3>
-        <p>First infrastructure hire at a 12-person startup. Built the initial API, deployment pipeline, and monitoring stack from scratch.</p>
-      </div>
-      <div class="commit">
-        <div class="commit-head"><span class="hash">1f0c9a2</span><span>2017 — 2018</span></div>
-        <h3>Software Engineer, New Grad <span class="company">@ Ridgeline Labs</span></h3>
-        <p>Joined as the fourth engineer. Worked across the stack before specializing in backend systems.</p>
-      </div> -->
     </div>
   </section>
 
@@ -606,8 +570,6 @@
       <div class="contact-links">
         <a href="mailto:flaredrovercodes@gmail.com">flaredrovercodes@gmail.com</a>
         <a href="https://github.com/FlaredRoverCodes" target="_blank" rel="noopener">GitHub ↗</a>
-        <!--<a href="https://linkedin.com/" target="_blank" rel="noopener">LinkedIn ↗</a>
-        <a href="/resume.pdf">Resume (PDF) ↗</a>-->
       </div>
     </div>
   </section>
@@ -636,7 +598,37 @@
     }, { threshold: 0.12 });
     revealEls.forEach(el => io.observe(el));
   }
+
+  // ---- View counter (GoatCounter) ------------------------------------
+  // GoatCounter records the pageview (see the <script data-goatcounter>
+  // tag below) and, separately, its cookie-based "exclude my own visits"
+  // setting (Settings -> Exclude my own visits in the dashboard) keeps
+  // the site owner's own visits out of that count automatically.
+  // Here we just fetch the current public total to display in the badge.
+  (async () => {
+    const countEl = document.getElementById('viewCount');
+    const SITE = 'flaredrovercodes'; // your GoatCounter site code
+
+    try {
+      const res = await fetch(`https://${SITE}.goatcounter.com/counter/TOTAL.json`);
+      if (!res.ok) throw new Error(`GoatCounter responded ${res.status}`);
+      const data = await res.json();
+      // GoatCounter returns a formatted count string, e.g. "1 234"
+      const raw = (data && (data.count_unique || data.count)) || '0';
+      const num = parseInt(String(raw).replace(/[^\d]/g, ''), 10) || 0;
+      if (countEl) countEl.textContent = num.toLocaleString();
+    } catch (err) {
+      console.error('GoatCounter total fetch failed:', err);
+      if (countEl) countEl.textContent = '—';
+    }
+  })();
 </script>
+
+<!-- GoatCounter: records each pageview server-side. Owner-exclusion is
+     configured in the GoatCounter dashboard (Settings -> Exclude my own
+     visits), not in this script. -->
+<script data-goatcounter="https://flaredrovercodes.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 
 </body>
 </html>
